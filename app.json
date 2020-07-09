@@ -1,0 +1,72 @@
+{
+    "usingComponents": {
+        "mp-navigation-bar": "/components/navigation-bar/navigation-bar"
+    },
+    "pages": [
+        "pages/index/index",
+        "pages/mine/mine/mine",
+        "pages/guide/guide/guide",
+        "pages/guide/tel/tel",
+        "pages/mine/my-order/my-order",
+        "pages/goods/goods-detail/goods-detail",
+        "pages/cart/cart/cart",
+        "pages/cart/order/payment-success/payment-success",
+        "pages/cart/order/payment-failed/payment-failed",
+        "pages/mine/my-prescription/my-prescription",
+        "pages/cart/order/confirm-order/confirm-order",
+		"pages/mine/my-collection/my-collection",
+        "pages/mine/my-info/my-info",
+        "pages/mine/my-address/my-address",
+        "pages/mine/my-add-address/my-add-address",
+        "pages/customize-glasses/prescription-list/prescription-list",
+        "pages/customize-glasses/customize-glasses/customize-glasses",
+        "pages/mine/track-order/track-order",
+        "pages/classify/goods-list/goods-list",
+        "pages/mine/write-review/write-review",
+        "pages/goods/goods-review/goods-review",
+        "pages/classify/classify/classify",
+        "pages/classify/search/search",
+        "pages/mine/my-coupon/my-coupon"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
+    },
+    "tabBar": {
+        "color": "#333333",
+        "selectedColor": "#F62500",
+        "backgroundColor": "#fff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "images/common/home.png",
+                "selectedIconPath": "images/common/home_on.png"
+            },
+            {
+                "pagePath": "pages/classify/classify/classify",
+                "text": "分类",
+                "iconPath": "images/common/category.png",
+                "selectedIconPath": "images/common/category_on.png"
+            },
+            {
+                "pagePath": "pages/cart/cart/cart",
+                "text": "购物车",
+                "iconPath": "images/common/shopcart.png",
+                "selectedIconPath": "images/common/shopcart_on.png"
+            },
+            {
+                "pagePath": "pages/mine/mine/mine",
+                "text": "我的",
+                "iconPath": "images/common/mine.png",
+                "selectedIconPath": "images/common/mine_on.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

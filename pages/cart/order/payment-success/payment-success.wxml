@@ -1,0 +1,12 @@
+<mp-navigation-bar color="#000000" background="#ffffff" title="支付结果" back="{{false}}"></mp-navigation-bar>
+<view class="payment">
+	<image src="/images/mine/order.png" mode="widthFix"></image>
+	<view class="text">
+		<icon type="success" color="#00D9AE" size='20'/>
+		支付成功
+	</view>
+	<view class="btn-list">
+		<view bindtap="backToIndex">返回首页</view>
+		<view bindtap="checkOrder">查看订单</view>
+	</view>
+</view>

@@ -1,0 +1,152 @@
+page {
+	font-size: 28rpx;
+	color: #333333;
+}
+checkbox .wx-checkbox-input {
+    width: 34rpx;
+    height: 34rpx;
+    margin-right: 20rpx;
+    border: 2rpx solid #DDDDDD;
+    border-radius: 3rpx; 
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+    background: #EF2400;
+    border: 2rpx solid #EF2400;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+    width: 34rpx; 
+    height: 34rpx; 
+    line-height: 34rpx;
+    text-align: center;
+    font-size: 34rpx; 
+    color: #ffffff;
+    background: transparent;
+    transform: translate(-50%, -50%) scale(1);
+}
+.main {
+	position: relative;
+	padding: 112rpx 24rpx 100rpx;
+	border-top: 30rpx solid #F5F6F7;
+	box-sizing: border-box;
+}
+.main .question {
+	position: absolute;
+	top: 30rpx;
+	right: 24rpx;
+	font-weight: 38rpx;
+	color: #FFCE03;
+}
+.question-container .text {
+	display: flex;
+	align-items: flex-start;
+	font-size: 28rpx;
+}
+.question-container .text view:nth-child(1) {
+	width: 80rpx;
+	margin-bottom: 30rpx;
+}
+.question-container .text view:nth-child(2) {
+	width: 100%;
+}
+.question-container image {
+	display: block;
+	width: 580rpx;
+	margin: 100rpx auto 0;
+}
+
+.pres .type {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 70rpx;
+}
+.pres .type view {
+	width: 222rpx;
+	height: 64rpx;
+	line-height: 64rpx;
+	text-align: center;
+	font-size: 26rpx;
+	background: #F1F1F1;
+	border: 1rpx solid #F1F1F1;
+	border-radius: 32rpx;
+	box-sizing: border-box;
+}
+.pres .type view.on {
+	color: #EF2400;
+	background: #FEF2EF;
+	border: 1rpx solid #EF2400;
+}
+.pres-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 40rpx;
+}
+.pres-item .pres-sub-item {
+	width: 275rpx;
+	text-align: center;
+	font-size: 26rpx;
+}
+.pres-item .pres-sub-item.disabled, .pres-item .pres-sub-item.disabled .picker-container .iconfont{
+	color: #DCDCDC;
+}
+.pres-item .pres-sub-item.add-item {
+	position: relative;
+	top: 60rpx;
+}
+.pres-item .pres-sub-item:nth-child(1) {
+	width: 120rpx;
+	text-align: left;
+}
+.pres-item .picker-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 80rpx;
+	padding: 0 20rpx 0 70rpx;
+	border-radius: 40rpx;
+	background-color: #F1F1F1;
+	box-sizing: border-box;
+}
+.pres-item .picker-container .iconfont {
+	font-size: 24rpx;
+	color: #C9C9C9;
+}
+.pd-checkbox {
+	margin-bottom: 40rpx;
+}
+.save-checkbox {
+	margin-bottom: 30rpx;
+}
+.pres-name {
+	width: 100%;
+	height: 80rpx;
+	margin-bottom: 40rpx;
+	padding: 0 55rpx;
+	background-color: #F1F1F1;
+	border-radius: 40rpx;
+	box-sizing: border-box;
+}
+.btn-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100rpx;
+	background-color: #FFFFFF;
+	border-top: 1rpx solid #DDDDDD;
+}
+.btn-list .btn {
+	width: 702rpx;
+	height: 80rpx;
+	text-align: center;
+	line-height: 80rpx;
+	font-size: 30rpx;
+	color: #FFFFFF;
+	background:linear-gradient(-90deg, rgba(254, 38, 0, 1) 0%, rgba(239, 36, 0, 1) 100%);
+	border-radius: 40rpx;
+}

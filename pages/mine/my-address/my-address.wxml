@@ -1,0 +1,39 @@
+<mp-navigation-bar color="{{color}}" background="#ffffff" title="收货地址" back="{{true}}"></mp-navigation-bar>
+
+<view class="container">
+
+    <view class="title" bindtap="onGetUserAddress">
+        <view>
+            <text class="iconfont iconweixin"></text>
+            <text>获取微信收货地址</text>
+        </view>
+        <text class="iconfont iconxiangyou"></text>
+    </view>
+
+    <view class="list">
+
+            <view wx:for="{{addressList}}" wx:key="index" class="item">
+
+                <view data-item="{{item}}" bindtap="changeOrderAddress">
+                    <view class="item-title">{{item.realname + ',' + item.mobile}}</view>
+                    <view class="item-text">
+                        <view wx:if="{{item.isdefault == 1}}">默认</view>
+                        {{item.address}}
+                    </view>
+                </view>
+
+                <text class="iconfont iconicon6" data-id="{{item.id}}" bindtap="onEditAddress"></text>
+
+            </view>
+    </view>
+
+    <view class="none-wrap" wx:if="{{addressList.length === 0}}">
+        <image src="/images/common/kong.png"></image>
+        <text>您还没有设置收货地址</text>
+    </view>
+
+</view>
+
+<navigator url="/pages/mine/my-add-address/my-add-address?type=create" hover-class="none">
+    <view class="btn">新增收货地址</view>
+</navigator>

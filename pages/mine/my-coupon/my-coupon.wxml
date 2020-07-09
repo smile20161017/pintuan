@@ -1,0 +1,29 @@
+<mp-navigation-bar color="{{color}}" background="#fff" title="我的优惠券" back="{{true}}"></mp-navigation-bar>
+<view wx:if="{{couponList.length}}">
+	<view class="title">
+		<text>最近领取</text>
+	</view>
+	<view class="coupon-wrap">
+		<view class="content-item {{item.effective ? '' : 'done'}}" wx:for="{{couponList}}" wx:key="id">
+			<image wx:if="{{item.effective}}" src="/images/index/coupon_bg.png" />
+			<image wx:else src="/images/index/coupon_bg_no.jpg" />
+			<view class="coupon-infor">
+				<view class="price">
+					<text>￥</text>
+					<text>{{item.cost}}</text>
+				</view>
+				<view class="msg">
+					<text>满{{item.enough}}使用</text>
+					<text>{{item.date}}</text>
+				</view>
+			</view>
+			<view class="use" data-item="{{item}}" data-effective="{{item.effective}}" bindtap="goToUse">
+				<text class="{{item.effective ? 'can' : ''}}">{{item.effective ? '去使用' : '已失效'}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="empty" wx:else>
+	<image src="/images/common/kong.png" mode="widthFix"></image>
+	您还没有可用的优惠券            
+</view>

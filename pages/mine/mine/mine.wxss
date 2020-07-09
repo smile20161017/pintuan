@@ -1,0 +1,164 @@
+page {
+	background-color: #F5F6F7;
+}
+.container {
+	position: relative;
+}
+.shade {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%!important;
+	height: 1030rpx;
+	padding: 0;
+	background-color: #FFFFFF;
+	z-index: 10;
+	opacity: 0;
+}
+.container {
+	padding: 20rpx 25rpx;
+	color: #333333;
+}
+.account {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 522rpx;
+	padding: 0 40rpx;
+	background: url('https://360.zhaokuangyi.com/attachment/images/global/account_bg.png') no-repeat center center / 100% 100%;
+	box-sizing: border-box;
+}
+.account .header {
+	padding: 56rpx 0 10rpx;
+}
+.account .header image {
+	display: block;
+	width: 122rpx;
+	height: 122rpx;
+	border-radius: 50%;
+}
+.account .name {
+	margin-bottom: 50rpx;
+	font-size: 36rpx;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.account .account-tab {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.account .account-tab .item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 181rpx;
+	height: 119rpx;
+	font-size: 32rpx;
+	background: #ffffff;
+	border-radius: 16rpx;
+	box-shadow: 16rpx 22rpx 22rpx 0rpx rgba(190, 20, 16, 1);
+}
+.account .account-tab .item text:nth-child(2) {
+	font-size: 24rpx;
+}
+.order {
+	width: 100%;
+	background: #ffffff;
+	border-radius: 6px;
+}
+.order .order-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 90rpx;
+	padding: 0 24rpx;
+	font-size: 24rpx;
+	color: #999999;
+	border-bottom: 1rpx solid #EEEEEE;
+	box-sizing: border-box;
+}
+.order .order-title text:nth-child(1) {
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #000000;
+}
+.order .order-tab {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	height: 171rpx;
+}
+.order .order-tab .tab-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	margin-top: 15rpx;
+}
+.order .order-tab .tab-item text {
+	font-size: 24rpx;
+	color: #333333;
+}
+.order .order-tab .tab-item text.iconfont {
+	display: block;
+	height: 43rpx;
+	margin-bottom: 10rpx;
+	line-height: 43rpx;
+	font-size: 48rpx;
+}
+.order .order-tab .tab-item text.iconfont.icon31daipingjia {
+	font-size: 54rpx;
+}
+.order .order-tab .tab-item text.num {
+	position: absolute;
+	right: -15rpx;
+	top: -15rpx;
+	width: 38rpx;
+	height: 38rpx;
+	text-align: center;
+	line-height: 38rpx;
+	font-size: 24rpx;
+	color: #ffffff;
+	background: #ef2400;
+	border-radius: 50%;
+	z-index: 10;
+}
+.set-wrap {
+	width: 100%;
+	margin-top: 20rpx;
+	background: #ffffff;
+	border-radius: 6px;
+}
+.set-wrap .option {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100rpx;
+	padding: 0 24rpx;
+	box-sizing: border-box;
+	border-bottom: 1rpx solid #EEEEEE;
+}
+.set-wrap-inner {
+	display: flex;
+	align-items: center;
+	font-size: 28rpx;
+	color: #333333;
+}
+.set-wrap-inner .iconfont {
+	font-size: 36rpx;
+	margin-right: 20rpx;
+}
+
+.brand {
+	font-size: 28rpx;
+	color: #999999;
+	margin-top: 162rpx;
+	margin-bottom: 10rpx;
+}

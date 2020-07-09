@@ -1,0 +1,98 @@
+.search-part {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 30rpx 24rpx;
+	background-color: #F5F6F7;
+	box-sizing: border-box;
+}
+.search-container {
+	position: relative;
+}
+.search-container input {
+	width: 546rpx;
+	height: 70rpx;
+	padding: 0 70rpx 0 35rpx;
+	font-size: 32rpx;
+	color: #333333;
+	border: 2rpx solid #CCCCCC;
+	border-radius: 35rpx;
+	box-sizing: border-box;
+	transition: all .3s;
+}
+.search-container input.focus {
+	border: 2rpx solid #EF2400;
+}
+.search-container icon {
+	position: absolute;
+	right: 25rpx;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 100;
+}
+.search-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 136rpx;
+	height: 70rpx;
+	font-size: 32rpx;
+	color: #FFFFFF;
+	background: linear-gradient(-90deg, rgba(254, 38, 0, 1) 0%, rgba(239, 36, 0, 1) 100%);
+	border-radius: 35rpx;
+}
+.part {
+	padding: 40rpx 24rpx 0;
+	box-sizing: border-box;
+}
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 35rpx;
+}
+.title text:nth-child(1) {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #000000;
+}
+.words {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.words view, .words navigator {
+	height: 70rpx;
+	padding: 0 30rpx;
+	margin-right: 30rpx;
+	margin-bottom: 20rpx;
+	line-height: 70rpx;
+	font-size: 26rpx;
+	color: #666666;
+	background-color: #F1F1F1;
+	border-radius: 35rpx;
+}
+.words .iconicon-test {
+	margin-right: 5rpx;
+	vertical-align: -2rpx;
+}
+.words .hot {
+	color: #EF2400;
+	background-color: #FEF2EF;
+}
+.found {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.found navigator {
+	width: 153rpx;
+	text-align: center;
+	font-size: 26rpx;
+	color: #666666;
+}
+.found navigator image {
+	display: block;
+	width: 100%;
+	margin-bottom: 20rpx;
+}

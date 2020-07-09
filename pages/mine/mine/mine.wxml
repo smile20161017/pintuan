@@ -1,0 +1,69 @@
+<mp-navigation-bar color="#000000" background="#F5F6F7" title="会员中心" back="{{false}}"></mp-navigation-bar>
+<view class="container">
+	<button class="shade" wx:if="{{!infor}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"></button>
+	<view class="account">
+		<view class="header">
+			<image src="{{infor.avatar ? infor.avatar : '/images/mine/header.png'}}" mode="widthFix"/>
+		</view>
+		<text class="name">{{infor.nickname ? infor.nickname : '请登录/注册'}}</text>
+		<view class="account-tab">
+			<navigator class="item" url="/pages/mine/my-prescription/my-prescription" hover-class="none">
+				<text>{{infor.statics.optometry ? infor.statics.optometry : 0}}</text>
+				<text>验光单</text>
+			</navigator>
+			<navigator class="item" url="/pages/mine/my-collection/my-collection" hover-class="none">
+				<text>{{infor.statics.favorite ? infor.statics.favorite : 0}}</text>
+				<text>收藏</text>
+			</navigator>
+			<navigator class="item" url="/pages/mine/my-coupon/my-coupon" hover-class="none">
+				<text>{{infor.statics.coupon ? infor.statics.coupon : 0}}</text>
+				<text>优惠券</text>
+			</navigator>
+		</view>
+	</view>
+	<view class="order">
+		<view class="order-title">
+			<text>我的订单</text>
+			<navigator url="/pages/mine/my-order/my-order?type=0" hover-class="none">查看全部订单</navigator>
+		</view>
+		<view class="order-tab">
+			<navigator class="tab-item" url="/pages/mine/my-order/my-order?type=1" hover-class="none">
+				<text class="iconfont iconicon1"></text>
+				<text>待付款</text>
+				<text class="num" wx:if="{{infor.statics.paid}}">{{infor.statics.paid}}</text>
+			</navigator>
+			<navigator class="tab-item" url="/pages/mine/my-order/my-order?type=2" hover-class="none">
+				<text class="iconfont iconicon2"></text>
+				<text>待发货</text>
+				<text class="num" wx:if="{{infor.statics.delivered}}">{{infor.statics.delivered}}</text>
+			</navigator>
+			<navigator class="tab-item" url="/pages/mine/my-order/my-order?type=3" hover-class="none">
+				<text class="iconfont iconicon3"></text>
+				<text>待收货</text>
+				<text class="num" wx:if="{{infor.statics.shipped}}">{{infor.statics.shipped}}</text>
+			</navigator>
+			<navigator class="tab-item" url="/pages/mine/my-order/my-order?type=4" hover-class="none">
+				<text class="iconfont icon31daipingjia"></text>
+				<text>待评价</text>
+				<text class="num" wx:if="{{infor.statics.evaluated}}">{{infor.statics.evaluated}}</text>
+			</navigator>
+		</view>
+	</view>
+	<view class="set-wrap">
+		<navigator class="option" url="/pages/mine/my-address/my-address" hover-class="none">
+			<view class="set-wrap-inner">
+				<text class="iconfont iconshouhuodizhi"></text>
+				<text>收货地址</text>
+			</view>
+			<text class="iconfont iconxiangyou"></text>
+		</navigator>
+		<navigator class="option" url="/pages/mine/my-info/my-info" hover-class="none">
+			<view class="set-wrap-inner">
+				<text class="iconfont iconzhanghaodenglu"></text>
+				<text>个人信息</text>
+			</view>
+			<text class="iconfont iconxiangyou"></text>
+		</navigator>
+	</view>
+	<text class="brand">ruufoo 如弗</text>
+</view>

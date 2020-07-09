@@ -1,0 +1,62 @@
+<mp-navigation-bar color="{{color}}" background="#FFFFFF" title="我的订单" back="{{true}}"></mp-navigation-bar>
+
+<view class="container">
+	<view class="type-list">
+		<view wx:for="{{ allOrderTypeList }}" wx:key="index" data-value="{{ item.value }}" catchtap="onSelectOrderType">
+			<view class="{{ item.value == orderType ? 'type-sel' : '' }}">{{ item.name }}</view>
+		</view>
+	</view>
+
+	<view class="box" wx:for="{{ orderList }}" wx:key="index" data-id="{{item.id}}" catchtap="onClickOrder">
+
+		<view class="index">
+			<text>{{ '订单号: ' + item.ordersn }}</text>
+			<text>{{item.status_text}}</text>
+		</view>
+
+		<view class="info" wx:for="{{ item.goods }}" wx:for-item="prod_item" wx:for-index="prod_index" wx:key="prod_index">
+			<!-- 镜框 -->
+			<view>
+				<view class="info-left">
+					<image src="{{ prod_item.thumb }}" mode="widthFix" lazy-load="true"></image>
+				</view>
+				<view class="info-middle">{{ prod_item.title }}</view>
+				<view class="info-right">
+					<text>{{ '¥' + prod_item.unitprice }}</text>
+					<text>{{ 'x' + prod_item.total }}</text>
+				</view>
+			</view>
+			<!-- 镜片 -->
+			<view>
+				<view class="info-left">
+					<image src="{{ prod_item.spec_img }}" mode="widthFix" lazy-load="true"></image>
+				</view>
+				<view class="info-middle">
+					<text>{{ prod_item.spec_title }}</text>
+					<!-- <text>{{ prod_item.config }}</text> -->
+				</view>
+				<view class="info-right"></view>
+			</view>
+		</view>
+
+		<view class="price">
+			<text>{{ '¥' + item.price }}</text>
+			<text>{{ '总价¥' + item.grprice + '      优惠¥' + item.couponprice + '      实付款' }}</text>
+		</view>
+
+		<view class="btn-list">
+			<view class="btn btn-red" wx:if="{{item.can_pay}}" data-id="{{item.id}}" catchtap="onPayOrder">立即支付</view>
+			<view class="btn btn-red" wx:if="{{item.can_complete}}" data-id="{{item.id}}" catchtap="onConfirmOrder">确认收货</view>
+			<view class="btn" wx:if="{{item.can_comment}}" data-index="{{index}}" catchtap="onReviewsOrder">立即评价</view>
+			<view class="btn" wx:if="{{item.show_express}}" data-id="{{item.id}}" catchtap="onCheckExpress">查看物流</view>
+			<view class="btn" wx:if="{{item.can_cancel}}" data-id="{{item.id}}" catchtap="onCancelOrder">取消订单</view>
+		</view>
+
+	</view>
+</view>
+
+<view class="none-wrap" wx:if="{{orderList.length === 0}}">
+	<image src="/images/common/kong.png"></image>
+	<text>您还没有相关的订单</text>
+	<text>可以去看看有哪些想买的</text>
+</view>

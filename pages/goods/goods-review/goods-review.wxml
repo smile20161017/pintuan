@@ -1,0 +1,30 @@
+<mp-navigation-bar color="#000000" background="#FFFFFF" title="查看评论"></mp-navigation-bar>
+<scroll-view class="main" scroll-y="{{true}}" bindscrolltolower="loadMore">
+	<view class="tab">
+		<view class="{{!image ? 'active' : ''}}" bindtap="getAll">全部</view>
+		<view class="{{image ? 'active' : ''}}" bindtap="getImg">有图</view>
+	</view>
+	<view class="comment-list">
+		<view class="comment-item" wx:for="{{reviews}}" wx:key="id">
+			<view class="comment-user">
+				<image src="{{item.headimgurl}}" mode="widthFix"/>
+				<view>
+					<text>{{item.nickname}}</text>
+					<text class="color">颜色分类：{{item.colour}}</text>
+				</view>
+			</view>
+			<view class="comment-content">{{item.content}}</view>
+			<view class="comment-img">
+				<view wx:for="{{item.images}}" wx:key="property" wx:for-item="sItem" wx:for-index="sIndex">
+					<image class="slide-image" src="{{sItem}}" data-list="{{item.images}}" data-src="{{sItem}}" bindtap='imgShow' mode="widthFix"/>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 上拉加载 -->
+	<view class="no-more" wx:if="{{noMore}}">
+		<text>没有更多内容了</text>
+	</view>
+	<mp-loading ext-class="loading-wrap" type="dot-gray" show="{{true}}" wx:else></mp-loading>
+</scroll-view>
+

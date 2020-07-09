@@ -1,0 +1,51 @@
+page {
+	font-size: 28rpx;
+	color: #333333;
+	background-color: #F5F6F7;
+}
+.payment {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 360rpx;
+	border-top: 20rpx solid #F5F6F7;
+	box-sizing: border-box;
+}
+.payment image {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+.text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 60rpx 0;
+}
+.text icon {
+	margin-right: 15rpx;
+}
+.btn-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.btn-list view {
+	display: block;
+	height: 60rpx;
+	line-height: 54rpx;
+	padding: 0 25rpx;
+	font-size: 26rpx;
+	color: #EF2400;
+	border: 2rpx solid #EF2400;
+	border-radius: 30rpx;
+	box-sizing: border-box;
+}
+.btn-list view:nth-child(1) {
+	margin-right: 60rpx;
+}

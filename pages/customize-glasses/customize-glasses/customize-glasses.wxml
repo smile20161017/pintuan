@@ -1,0 +1,146 @@
+<mp-navigation-bar color="#000000" background="#FFFFFF" title="填写验光单"></mp-navigation-bar>
+<view class="main">
+	<text class="question iconfont iconiconfontwenhao1" bindtap="openQuestion"></text>
+	<view class="pres">
+		<!-- 处方类型 -->
+		<view class="type">
+			<view class="{{prescriptionType == item.value ? 'on' : ''}}" wx:for="{{presType}}" wx:key="value" data-value="{{item.value}}" bindtap="presTypeChange">{{item.name}}</view>
+		</view>
+		<!-- SPH&CYL -->
+		<view class="pres-item">
+			<view class="pres-sub-item"></view>
+			<view class="pres-sub-item">球镜/度数 (SPH)</view>
+			<view class="pres-sub-item">{{prescriptionType == 'Progressive' ? '下加光 (ADD)' : ''}}</view>
+		</view>
+		<view class="pres-item">
+			<view class="pres-sub-item">右眼 (R)</view>
+			<view class="pres-sub-item">
+				<picker bindchange="pickerSelect" data-type="odSph" data-option="sphOptions" header-text="球镜/度数 (SPH)" value="{{presVal.odSph.index}}" range="{{sphOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{sphOptions[presVal.odSph.index].label}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="pres-sub-item add-item">
+				<picker bindchange="pickerSelect" data-type="odAdd" data-option="addOptions" header-text="下加光 (ADD)" value="{{presVal.odAdd.index}}" range="{{addOptions}}" range-key="label" wx:if="{{prescriptionType == 'Progressive'}}">
+					<view class="picker-container">
+						<text>{{presVal.odAdd.index != -1 ? addOptions[presVal.odAdd.index].label : '0.00'}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+		</view>
+		<view class="pres-item">
+			<view class="pres-sub-item">左眼 (L)</view>
+			<view class="pres-sub-item">
+				<picker bindchange="pickerSelect" data-type="osSph" data-option="sphOptions" header-text="球镜/度数 (SPH)" value="{{presVal.osSph.index}}" range="{{sphOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{sphOptions[presVal.osSph.index].label}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="pres-sub-item"></view>
+		</view>
+		<!-- Axis&ADD -->
+		<view class="pres-item">
+			<view class="pres-sub-item"></view>
+			<view class="pres-sub-item">柱镜/散光 (CYL)</view>
+			<view class="pres-sub-item">散光轴位 (Axis)</view>
+		</view>
+		<view class="pres-item">
+			<view class="pres-sub-item">右眼 (R)</view>
+			<view class="pres-sub-item">
+				<picker bindchange="pickerSelect" data-type="odCyl" data-option="cylOptions" header-text="柱镜/散光 (CYL)" value="{{presVal.odCyl.index}}" range="{{cylOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{cylOptions[presVal.odCyl.index].label}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="pres-sub-item {{presVal.odCyl.value == '0.00' ? 'disabled' : ''}}">
+				<picker bindchange="pickerSelect" data-type="odAxis" data-option="axisOptions" disabled="{{presVal.odCyl.value == '0.00' ? true : false}}" header-text="散光轴位 (Axis)" value="{{presVal.odAxis.index}}" range="{{axisOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{presVal.odAxis.index != -1 ? axisOptions[presVal.odAxis.index].label : '无'}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+		</view>
+		<view class="pres-item">
+			<view class="pres-sub-item">左眼 (L)</view>
+			<view class="pres-sub-item">
+				<picker bindchange="pickerSelect" data-type="osCyl" data-option="cylOptions" header-text="柱镜/散光 (CYL)" value="{{presVal.osCyl.index}}" range="{{cylOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{cylOptions[presVal.osCyl.index].label}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="pres-sub-item {{presVal.osCyl.value == '0.00' ? 'disabled' : ''}}">
+				<picker bindchange="pickerSelect" data-type="osAxis" data-option="axisOptions" disabled="{{presVal.osCyl.value == '0.00' ? true : false}}" header-text="散光轴位 (Axis)" value="{{presVal.osAxis.index}}" range="{{axisOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{presVal.osAxis.index != -1 ? axisOptions[presVal.osAxis.index].label : '无'}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+			
+		</view>
+		<!-- PD -->
+		<view class="pres-item" wx:if="{{pdCheck}}">
+			<view class="pres-sub-item">瞳距 (PD)</view>
+			<view class="pres-sub-item">
+				<picker bindchange="pickerSelect" data-type="pdL" data-option="doublePdOptions" header-text="瞳距 (PD)" value="{{presVal.pdL.index}}" range="{{doublePdOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{presVal.pdL.index != -1 ? doublePdOptions[presVal.pdL.index].label : '左-PD'}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="pres-sub-item">
+				<picker bindchange="pickerSelect" data-type="pdR" data-option="doublePdOptions" header-text="瞳距 (PD)" value="{{presVal.pdR.index}}" range="{{doublePdOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{presVal.pdR.index != -1 ? doublePdOptions[presVal.pdR.index].label : '右-PD'}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>	
+		</view>
+		<view class="pres-item" wx:else>
+			<view class="pres-sub-item">瞳距 (PD)</view>
+			<view class="pres-sub-item">
+				<picker bindchange="pickerSelect" data-type="pd" data-option="pdOptions" header-text="瞳距 (PD)" value="{{presVal.pd.index}}" range="{{pdOptions}}" range-key="label">
+					<view class="picker-container">
+						<text>{{presVal.pd.index != -1 ? pdOptions[presVal.pd.index].label : 'PD'}}</text>
+						<text class="iconfont iconiconfontjiantou"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="pres-sub-item"></view>	
+		</view>
+		<checkbox-group class="pd-checkbox" bindchange="doublePd">
+			<checkbox value="on" checked="{{pdCheck}}">双瞳距值</checkbox>
+		</checkbox-group>
+		<input class="pres-name" value="{{prescriptionName}}" type="text" placeholder="验光单命名为..." bindinput="inputChange"/>
+	</view>
+</view>
+<view class="btn-list">
+	<view class="btn" bindtap="confirm">确定</view>
+</view>
+
+
+<pull-up-sheet show="{{showActionsheet}}" title="验光单类型">
+	<view class="question-container" slot="container">
+		<view class="text">
+			<view>单光:</view>
+			<view>只有一个焦点，适用于普通远视、近视、老花等</view>
+		</view>
+		<view class="text">
+			<view>渐进:</view>
+			<view>同一镜片上具有多重焦点，可用于看远、中、近距离，一副眼镜可同时满足看近、看远及中距离</view>
+		</view>
+		<image src="/images/customize/type.png" mode="widthFix"></image>
+	</view>
+</pull-up-sheet>

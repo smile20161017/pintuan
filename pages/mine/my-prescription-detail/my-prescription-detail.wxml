@@ -1,0 +1,44 @@
+<mp-navigation-bar color="#000000" background="#ffffff" title="验光单详情"></mp-navigation-bar>
+<view class="container">
+    <view class="name">
+        <view class="type">{{lensTypeList[info.type]}}</view>
+        <view class="pres-name">{{ info.name }}({{info.createtime}})</view>
+    </view>
+    <!-- SPH&CYL -->
+    <view class="pres-item sub-title">
+        <view class="pres-sub-item"></view>
+        <view class="pres-sub-item">球镜/度数 (SPH)</view>
+        <view class="pres-sub-item">{{info.type == 'Progressive' ? '下加光 (ADD)' : ''}}</view>
+    </view>
+    <view class="pres-item">
+        <view class="pres-sub-item">右眼 (R)</view>
+        <view class="pres-sub-item">{{ info.od_sph != '0.00' && info.od_sph > 0 ? '+' + info.od_sph : info.od_sph }}</view>
+        <view class="pres-sub-item add">{{ info.od_add != '' ? '+' + info.od_add : info.od_add }}</view>
+    </view>
+    <view class="pres-item left">
+        <view class="pres-sub-item">左眼 (L)</view>
+        <view class="pres-sub-item">{{ info.os_sph != '0.00' && info.os_sph > 0 ? '+' + info.os_sph : info.os_sph }}</view>
+        <view class="pres-sub-item"></view>
+    </view>
+    <!-- Axis&ADD -->
+    <view class="pres-item sub-title">
+        <view class="pres-sub-item"></view>
+        <view class="pres-sub-item">柱镜/散光 (CYL)</view>
+        <view class="pres-sub-item">散光轴位 (Axis)</view>
+    </view>
+    <view class="pres-item">
+        <view class="pres-sub-item">右眼 (R)</view>
+        <view class="pres-sub-item">{{ info.od_cyl != '0.00' && info.od_cyl > 0 ? '+' + info.od_cyl : info.od_cyl }}</view>
+        <view class="pres-sub-item add-item">{{info.od_axis ? info.od_axis : '无'}}</view>
+    </view>
+    <view class="pres-item left">
+        <view class="pres-sub-item">左眼 (L)</view>
+        <view class="pres-sub-item">{{ info.os_cyl != '0.00' && info.os_cyl > 0 ? '+' + info.os_cyl : info.os_cyl }}</view>
+        <view class="pres-sub-item">{{info.os_axis ? info.od_axis : '无'}}</view>
+    </view>
+    <view class="pres-item pd">
+        <view class="pres-sub-item">瞳距 (PD)</view>
+        <view class="pres-sub-item pd" wx:if="{{info.pdcheck == 'on'}}">{{info.pd_l}} (左) {{info.pd_r}} (右)</view>
+        <view class="pres-sub-item pd" wx:else>{{info.pd}}</view>
+    </view>
+</view>

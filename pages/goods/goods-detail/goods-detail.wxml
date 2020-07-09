@@ -1,0 +1,232 @@
+<mp-navigation-bar color="#000000" background="#fff" title="眼镜详情" back="{{backFlag}}">
+	<view class="left" slot="left" wx:if="{{!backFlag}}">
+		<view class="home" bindtap="goHome">
+			<text class="iconfont iconshouye1"></text>
+		</view>
+	</view>
+</mp-navigation-bar>
+<view class="product-img">
+	<swiper circular="true" current="{{thumbsCurrent}}" bindchange="swiperChange">
+		<swiper-item wx:for="{{detail.goods.thumbs}}" wx:key="item">
+			<image src="{{item}}" class="slide-image" mode="widthFix" bindtap="imgShow" data-src="{{item}}" />
+		</swiper-item>
+	</swiper>
+	<text class="image-index">{{thumbsCurrent + 1}}/{{detail.goods.thumbs.length}}</text>
+	<view class="product-scroll">
+		<scroll-view class="scroll-box" scroll-x="true">
+			<view class="product-item {{detail.goods.id == item.id ? 'on' : ''}}" wx:for="{{relationList}}" wx:key="id" data-id="{{item.id}}" bindtap="colorChange">
+				<image src="{{item.thumb}}" mode="widthFix" />
+				<view class="sold-out" wx:if="{{!item.status}}">{{item.reason}}</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>
+<view class="product-infor">
+	<view class="left">
+		<view class="product-name">{{detail.goods.title}}</view>
+		<view class="product-price">
+			<view class="price">￥<text>{{detail.goods.marketprice}}</text></view>
+			<text class="o-price" wx:if="{{detail.goods.productprice != '0.00'}}">￥{{detail.goods.productprice}}</text>
+		</view>
+	</view>
+	<view class="right {{collectFlag ? 'collected' : ''}}" bindtap="collect">
+		<text class="iconfont {{collectFlag ? 'iconshoucang-copy' : 'iconshoucang'}}"></text>
+		<text>{{collectFlag ? '已收藏' : '收藏'}} </text>
+	</view>
+</view>
+<view class="activity">
+	<view class="explain-list address">
+		<view class="item-left">
+			<text>发货</text>
+			<text class="iconfont icondingwei"></text>
+			<text>{{detail.goods.city}}</text>
+			<text>快递包邮</text>
+		</view>
+		<text class="item-right">月销{{detail.goods.sales}}</text>
+	</view>
+	<view class="explain-list" bindtap='couponShowFn'>
+		<view class="item-left">
+			<text>领券</text>
+			<text class="discount" wx:for="{{couponList}}" wx:key="id" wx:if="{{index < 2}}">满{{item.enough}}减{{item.cost}}</text>
+		</view>
+		<text class="item-right iconfont iconxiangyou"></text>
+	</view>
+</view>
+<!-- 保障参数 -->
+<view class="activity">
+	<view class="explain-list" bindtap="safeguardShowFn">
+		<view class="item-left">
+			<text>保障</text>
+			<text>假一赔四·极速退款·七天无理由退换</text>
+		</view>
+		<text class="item-right iconfont iconxiangyou"></text>
+	</view>
+	<view class="explain-list" bindtap='paramShowFn'>
+		<view class="item-left">
+			<text>参数</text>
+			<text>材质</text>
+			<text>颜色分类...</text>
+		</view>
+		<text class="item-right iconfont iconxiangyou"></text>
+	</view>
+</view>
+<!-- 评价 -->
+<view class="section" wx:if="{{reviewData}}">
+	<view class="section-title">
+		<view class="left">
+			<text>宝贝评价</text>
+			<text>({{reviewTotal}})</text>
+		</view>
+		<navigator class="right" url="/pages/goods/goods-review/goods-review?id={{detail.goods.id}}" hover-class="none">
+			<text>查看全部</text>
+			<text class="iconfont iconxiangyou"></text>
+		</navigator>
+	</view>
+	<navigator class="comment-list" url="/pages/goods/goods-review/goods-review?id={{detail.goods.id}}" hover-class="none">
+		<view class="user">
+			<image src="{{reviewData.headimgurl}}"/>
+			<text>{{reviewData.nickname}}</text>
+		</view>
+		<view class="comment-content">{{reviewData.content}}</view>
+	</navigator>
+</view>
+<view class="section no-review" wx:else>
+	宝贝暂无评价
+</view>
+<view class="section recommend">
+	<navigator class="section-title" url="/pages/classify/goods-list/goods-list" hover-class="none">
+		<view class="left">
+			<text>推荐</text>
+		</view>
+		<view class="right">
+			<text>查看全部</text>
+			<text class="iconfont iconxiangyou"></text>
+		</view>
+	</navigator>
+	<view class="recommend-list">
+		<navigator class="recommend-item" url="/pages/goods/goods-detail/goods-detail?id={{item.id}}" wx:for="{{detail.recommend_list}}" wx:key="id" hover-class="none">
+			<view class="recommend-img">
+				<image src="{{item.thumb}}" mode="widthFix" />
+			</view>
+			<view class="recommend-name">{{item.title}}</view>
+			<view class="recommend-price">
+				<text>￥</text>
+				<text>{{item.marketprice}}</text>
+			</view>
+		</navigator>
+	</view>
+</view>
+<view class="detail">
+	<view class="detail-title">
+		<text>宝贝详情</text>
+	</view>
+	<rich-text class="rich-content" nodes="{{detail.goods.content}}"></rich-text>
+</view>
+
+
+<view class="btn-list">
+	<view class="btn-left">
+		<view class="btn-item" bindtap="goHome">
+			<text class="iconfont iconshouye1"></text>
+			<text>首页</text>
+		</view>
+		<button class="btn-item contact" open-type="contact" bindcontact="handleContact">
+			<text class="iconfont iconicon-"></text>
+			<text>客服</text>
+		</button>
+		<view class="btn-item" bindtap="goToCart">
+			<text class="iconfont icongouwuche"></text>
+			<text>购物车</text>
+		</view>
+	</view>
+	<view class="btn-right {{detail.goods.status ? '' : 'sold-out'}}">
+		<view class="add" data-type="{{1}}" bindtap="addToCart"><text>加入购物车</text></view>
+		<view class="buy-now" data-type="{{0}}" bindtap="addToCart"><text>立即购买</text></view>
+	</view>
+</view>
+
+<!-- 加购弹窗 -->
+<pull-up-sheet show="{{buyNowShow}}" icon="iconguanbi2" btnType="action" btnText="{{cartFlag ? '加入购物车' : '立即购买'}}" bindactionTap="buyNow">
+	<view class="buy-now-wrap" slot="container">
+		<view class="goods-intro">
+			<view class="left">
+				<image src="{{detail.goods.thumbs[0]}}" mode="widthFix"></image>
+			</view>
+			<view class="right">
+				<view class="price">￥<text>{{lens.marketprice}}</text></view>
+				<view class="o-price" wx:if="{{lens.productprice != '0.00'}}">原价 <text>￥{{lens.productprice}}</text></view>
+				<view>已选：{{color.name}}{{lens.title}}</view>
+			</view>
+		</view>
+		<view class="goods-color">
+			<view class="item-title">颜色分类</view>
+			<view class="item-wrap">
+				<view class="item {{color.id == item.id ? 'on' : ''}}" wx:for="{{colorList}}" wx:key="id" data-id="{{item.id}}" bindtap="colorChange">{{item.name}}</view>
+			</view>
+		</view>
+		<view class="goods-lens">
+			<view class="item-title">镜片组合</view>
+			<view class="item-wrap">
+				<view class="item {{lens.id == item.id ? 'on' : ''}} {{item.stock ? '' : 'sold-out'}}" wx:for="{{detail.option_list}}" wx:key="id" data-item="{{item}}" bindtap="lensChange">{{item.title}}</view>
+			</view>
+		</view>
+	</view>	
+</pull-up-sheet>
+<!-- 优惠券 -->
+<pull-up-sheet show="{{couponShow}}" title="优惠券">
+	<view class="coupon-wrap" slot="container">
+		<view class="content-item" wx:for="{{couponList}}" wx:key="id">
+			<image src="/images/index/coupon_bg.png" />
+			<view class="coupon-infor">
+				<view class="price">
+					<text>￥</text>
+					<text>{{item.cost}}</text>
+				</view>
+				<view class="msg">
+					<text>满{{item.enough}}使用</text>
+					<text>{{item.date}}</text>
+				</view>
+			</view>
+			<view class="use {{item.receive ? 'done' : ''}}" data-item="{{item}}" data-index="{{index}}" bindtap="getCoupon">{{item.receive ? '已领取' : '立即领取'}}</view>
+		</view>
+	</view>
+</pull-up-sheet>
+<!-- 参数 -->
+<pull-up-sheet show="{{paramShow}}" title="产品参数">
+	<view class="param-wrap" slot="container">
+		<view class="content-item" wx:for="{{detail.param_list}}" wx:key="title">
+			<text>{{item.title}}</text>
+			<text>{{item.value}}</text>
+		</view>
+	</view>
+</pull-up-sheet>
+<!-- 保障 -->
+<pull-up-sheet show="{{safeguardShow}}" title="基础保障">
+	<view class="safeguard" slot="container">
+		<view class="safeguard-item">
+			<view class="item-icon">
+				<text class="iconfont iconduihao"></text>
+			</view>
+			<view class="item-text">
+				<view>假一赔四</view>
+				<view>正品保障，假一赔四</view>
+			</view>
+		</view>
+		<view class="safeguard-item">
+			<view class="item-icon">
+				<text class="iconfont iconduihao"></text>
+			</view>
+			<view class="item-text">
+				<view>赠送保价险</view>
+				<view>投保保价险，活动结束后15天内若发生降价，可举证申请保险理赔。部分场景下不支持理赔（如双十一活动订单等），具体理赔范围详见天猫</view>
+			</view>
+		</view>
+	</view>
+</pull-up-sheet>
+
+<!-- 授权弹窗 -->
+<mp-dialog class="login" show="{{loginShow}}">
+	<view class="login-title">您还未登录，请先登录</view>
+	<view class="later" bindtap="later"><text>先逛逛,稍后登录</text></view>
+	<button class="get-infor" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">去登录</button>
+</mp-dialog>

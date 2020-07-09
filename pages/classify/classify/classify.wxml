@@ -1,0 +1,38 @@
+<mp-navigation-bar color="#000000" background="#F5F6F7" title="商品分类" back="{{false}}"></mp-navigation-bar>
+<view class="classify">
+	<navigator class="search" url="/pages/classify/search/search" hover-class="none">
+		<view><text class="iconfont iconsearch"></text>搜索店内宝贝</view>
+	</navigator>
+	<view class="scroll">
+		<scroll-view class="left" scroll-y="{{true}}">
+			<view class="nav" wx:for="{{classify}}" wx:key="id" data-index="{{index}}" bindtap="listChange">
+				<view class="nav-item {{navIndex == index ? 'on' : ''}}">{{item.name}}</view>
+			</view>
+		</scroll-view>
+		<scroll-view class="right" scroll-y="{{true}}">
+			<view class="recommend" wx:if="{{navIndex == 0}}">
+				<block wx:for="{{list.children}}" wx:key="id">
+					<navigator class="recommend-item" url="/pages/classify/goods-list/goods-list?id={{item.id}}" hover-class="none">
+						<image src="{{item.thumb}}" mode="widthFix"></image>
+					</navigator>
+				</block>
+			</view>
+			<view class="normal" wx:else>
+				<view class="view-all">
+					<navigator url="/pages/classify/goods-list/goods-list?id={{list.id}}" hover-class="none">全部{{list.name}} ></navigator>
+				</view>
+				<view class="goods-list" wx:for="{{list.children}}" wx:key="id">
+					<view class="list-name">{{item.name}}</view>
+					<view class="sub-list">
+						<block wx:for="{{item.children}}" wx:key="name" wx:for-item="sItem" wx:for-index="sIndex">
+							<navigator class="sub-item" url="/pages/classify/goods-list/goods-list?id={{sItem.id}}" hover-class="none">
+								<image src="{{sItem.thumb}}" mode="widthFix" wx:if="{{sItem.thumb}}"></image>
+								<view class="{{sItem.thumb ? '' : 'without-img'}}">{{sItem.name}}</view>
+							</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

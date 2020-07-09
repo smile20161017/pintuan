@@ -1,0 +1,36 @@
+<mp-navigation-bar color="{{color}}" background="#fff" title="我的收藏" back="{{true}}"></mp-navigation-bar>
+<view class="container" wx:if="{{collectionList.length}}">
+    <view class="title">
+        <view>共<text class="text-red">{{collectionList.length || 0}}</text>件商品</view>
+        <text wx:if="{{!isManageModel}}" bindtap="onManageClick">管理</text>
+        <text wx:if="{{isManageModel}}" bindtap="onManageClick">完成</text>
+    </view>
+
+    <view class="list {{isManageModel ? 'list-hasBtn': ''}}">
+        <view class="box" wx:for="{{collectionList}}" wx:key="index">
+            <text class="icon {{item.sel ? 'icon-seled': ''}}" wx:if="{{isManageModel}}" data-index="{{index}}" catchtap="onProdSel">
+                <text class="iconfont iconduihao"></text>
+            </text>
+            <image src="{{item.thumb}}" data-id="{{item.goodsid}}" bindtap="onProdClick"></image>
+            <view class="desc" data-id="{{item.goodsid}}" bindtap="onProdClick">
+                <view>{{item.title}}</view>
+                <view class="disabled" wx:if="{{item.status == 0}}">{{item.reason}}</view>
+                <view class="text-red" wx:else="{{item.status}}">{{'¥' + item.marketprice}}</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="footer" wx:if="{{isManageModel}}">
+        <view bindtap="onSelectAll">
+            <text class="icon {{selAll ? 'icon-seled': ''}}">
+                <text class="iconfont iconduihao"></text>
+            </text>
+            <text>全选</text>
+        </view>
+        <view class="btn" bindtap="onDelCollection">删除</view>
+    </view>
+</view>
+<view class="empty" wx:else>
+	<image src="/images/common/kong.png" mode="widthFix"></image>
+	您还没有收藏的商品
+</view>

@@ -1,0 +1,18 @@
+<mp-navigation-bar color="#000000" background="#fff" title="物流信息"></mp-navigation-bar>
+<view class="infor">
+	<view class="infor-img">
+		<image src="{{info.thumb}}" mode="widthFix"></image>
+	</view>
+	<view class="infor-content">
+		<text class="status">{{info.status}}</text>
+		<text>承运来源：{{info.com}}</text>
+		<text>运单编号：{{info.sn}}</text>
+	</view>
+	<view class="copy" bindtap="copy">复制</view>
+</view>
+<view class="list">
+	<view class="list-item" wx:for="{{info.expresslist}}">
+		<text>{{item.step}}</text>
+        <view>{{item.time}}</view>                
+	</view>
+</view>

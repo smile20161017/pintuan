@@ -1,0 +1,94 @@
+<mp-navigation-bar color="#000000" background="#FFFFFF" title="购物车" back="{{false}}"></mp-navigation-bar>
+<view class="main">
+	<view class="cart-infor" wx:if="{{list.length}}">
+		<view class="total-infor">
+			<text>共{{list.length}}件宝贝</text>
+			<text bindtap="edit">{{editFlag ? '完成' : '管理'}}</text>
+		</view>
+		<view class="cart-list">
+			<view class="list-item" wx:for="{{list}}" wx:key="id" wx:if="{{item.status}}">
+				<mp-slideview class="slide-view" buttons="{{slideButtons}}" data-id="{{item.id}}" bindbuttontap="slideButtonTap">
+					<view class="product-container">
+						<view class="product">
+							<view class="product-select">
+								<icon wx:if="{{item.selected}}" type="success" color="#EF2400" data-index="{{index}}" size='20' bindtap="itemSelected"/>
+								<icon wx:else type="circle" data-index="{{index}}" size='20' bindtap="itemSelected"/>
+							</view>
+							<navigator class="product-img" url="/pages/goods/goods-detail/goods-detail?id={{item.goodsid}}" hover-class="none">
+								<image src="{{item.thumb}}" mode="widthFix"></image>
+							</navigator>
+							<navigator class="product-des" url="/pages/goods/goods-detail/goods-detail?id={{item.goodsid}}" hover-class="none">
+								<label class="product-name">{{item.title}}</label>
+							</navigator>
+						</view>
+						<view class="pres">
+							<view class="product-img lens-img">
+								<image src="{{item.spec_img}}" mode="widthFix"></image>
+							</view>
+							<view class="product-des">{{item.spec_title}}</view>
+						</view>
+						<view class="count">
+							<view class="count-container">
+								<view class="num-box">
+									<lable class="minus" bindtap="minus" data-index="{{index}}">-</lable>
+									<label class="center">{{item.total}}</label>
+									<lable class="plus" bindtap="add" data-index="{{index}}">+</lable>
+								</view>
+								<view class="price">￥{{item.price}}</view>
+							</view>
+						</view>
+					</view>
+				</mp-slideview>
+			</view>
+			<view class="list-item" wx:for="{{list}}" wx:key="id" wx:if="{{!item.status}}">
+				<mp-slideview class="slide-view" buttons="{{slideButtons}}" data-id="{{item.id}}" bindbuttontap="slideButtonTap">
+					<view class="product-container">
+						<view class="product">
+							<view class="product-select">
+								<text class="circle"></text>
+							</view>
+							<navigator class="product-img" url="/pages/goods/goods-detail/goods-detail?id={{item.goodsid}}" hover-class="none">
+								<image src="{{item.thumb}}" mode="widthFix"></image>
+							</navigator>
+							<navigator class="product-des" url="/pages/goods/goods-detail/goods-detail?id={{item.goodsid}}" hover-class="none">
+								<label class="product-name">{{item.title}}</label>
+								<label class="sold-out-infor">{{item.reason}}</label>
+							</navigator>
+						</view>
+					</view>
+				</mp-slideview>
+			</view>
+		</view>
+	</view>
+	<view class="empty" wx:if="{{noData}}">
+		<image src="/images/common/cart.png" mode="widthFix"></image>
+		<view class="blank">购物车还是空的</view>
+		<view class="buy">赶紧买点宝贝慰劳下自己吧</view>
+		<view class="go" bindtap="go">去逛逛</view>
+	</view>
+</view>
+
+<view class="total" wx:if="{{list.length}}">
+	<view class="total-select-box">
+		<icon class="total-select" type="success" color="#EF2400" size='20' wx:if="{{selectAllStatus}}" bindtap="selectAll"/>
+		<icon class="total-select" type="circle" color="#DDDDDD" size='20' wx:else bindtap="selectAll"/>
+		<text>全选</text>
+	</view>
+	<view class="total-edit" wx:if="{{editFlag}}">
+		<view bindtap="batchCollect">移至收藏夹</view>
+		<view bindtap="batchDel">删除</view>
+	</view>
+	<view class="total-normal" wx:else>
+		<view class="total-price">
+			<view>合计: <text>￥{{totalPrice}}</text></view>
+		</view>
+		<view class="settle" bindtap="settle">结算 ({{selectedNum}})</view>
+	</view>
+</view>
+
+<!-- 授权弹窗 -->
+<mp-dialog class="login" show="{{loginShow}}">
+	<view class="login-title">您还未登录，请先登录</view>
+	<view class="later" bindtap="later"><text>先逛逛,稍后登录</text></view>
+	<button class="get-infor" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">去登录</button>
+</mp-dialog>

@@ -1,0 +1,38 @@
+<mp-navigation-bar color="#000000" background="#F5F6F7" title="搜索"></mp-navigation-bar>
+<view class="search-part">
+	<view class="search-container">
+		<input value="{{searchValue}}" class="{{focus ? 'focus' : ''}}" type="text" auto-focus="{{true}}" bindfocus="inputFocus" bindblur="inputBlur" bindinput="inputChange" bindconfirm="search"/>
+		<icon hidden="{{searchValue == ''}}" type="clear" color="#999999" size='20' bindtap="clearInput"/>
+	</view>
+	<view class="search-btn" bindtap="search">搜索</view>
+</view>
+<view class="part" wx:if="{{searchStorage.length}}">
+	<view class="title">
+		<text>历史搜索</text>
+		<text class="iconfont iconicon7" bindtap="clearHistory"></text>
+	</view>
+	<view class="words">
+		<view wx:for="{{searchStorage}}" wx:key="item" data-item="{{item}}" bindtap="historySearch">{{item}}</view>
+	</view>
+</view>
+<view class="part">
+	<view class="title">
+		<text>实时搜索</text>
+	</view>
+	<view class="words">
+		<navigator class="{{item.is_hot == '1' ? 'hot' : ''}}" wx:for="{{realTime}}" wx:key="id" url="/pages/classify/goods-list/goods-list?keywords={{item.name}}" hover-class="none">
+			<text class="iconfont iconicon-test" wx:if="{{item.is_hot == '1'}}"></text>{{item.name}}
+		</navigator>
+	</view>
+</view>
+<view class="part">
+	<view class="title">
+		<text>搜索发现</text>
+	</view>
+	<view class="found">
+		<navigator wx:for="{{find}}" wx:key="id" url="/pages/classify/goods-list/goods-list?id={{item.id}}" hover-class="none">
+			<image src="{{item.thumb}}" mode="widthFix"></image>
+			<text>{{item.name}}</text>
+		</navigator>
+	</view>
+</view>

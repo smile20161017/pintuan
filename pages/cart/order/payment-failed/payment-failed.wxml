@@ -1,0 +1,11 @@
+<mp-navigation-bar color="#000000" background="#ffffff" title="支付结果" back="{{false}}"></mp-navigation-bar>
+<view class="payment">
+	<image src="/images/mine/order.png" mode="widthFix"></image>
+	<view class="text">
+		<icon type="clear" color="#EF2400" size='20'/>
+		支付失败
+	</view>
+	<view class="btn-list">
+		<view bindtap="pay">继续支付</view>
+	</view>
+</view>

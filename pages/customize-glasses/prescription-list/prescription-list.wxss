@@ -1,0 +1,148 @@
+page {
+	font-size: 26rpx;
+	color: #333333;
+	background-color: #F5F6F7;
+}
+.add-pres {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 180rpx;
+	font-size: 32rpx;
+	font-weight: 500;
+	color: #EF2400;
+}
+.add-pres .iconfont {
+	height: 40rpx;
+	margin-right: 5rpx;
+	font-size: 40rpx;
+}
+.list {
+	padding: 0 25rpx 140rpx;
+	box-sizing: border-box;
+}
+.list-item {
+	position: relative;
+	margin-bottom: 40rpx;
+	padding: 25rpx 0 0 0;
+	background-color: #FFFFFF;
+	border: 4rpx solid #FFFFFF;
+	border-radius: 12rpx;
+	box-shadow:0px 6rpx 21rpx 0px #e0e0e0;
+	box-sizing: border-box;
+}
+.list-item:last-child {
+	margin-bottom: 0;
+}
+.list-item.selected {
+	border: 4rpx solid #EF2400;
+}
+.list-item .icon {
+	display: flex;
+	align-items: flex-start;
+	position: absolute;
+	right: 20rpx;
+	top: 20rpx;
+}
+.name {
+	display: flex;
+	align-items: center;
+	margin: 0 25rpx 20rpx;
+}
+.name .type {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 83rpx;
+	height: 40rpx;
+	margin-right: 10rpx;
+	font-size: 24rpx;
+	font-weight: bold;
+	color: #EF2400;
+	border: 2rpx solid #EF2400;
+	border-radius: 20rpx;
+}
+.name .pres-name {
+	font-weight: bold;
+	color: #000000;
+}
+.pres-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60rpx;
+	margin: 0 25rpx;
+}
+.pres-item.left {
+	margin-bottom: 20rpx;
+}
+.pres-item.pd {
+	height: 90rpx;
+	margin: 0;
+	padding: 0 25rpx;
+	border-top: 1rpx solid #DDDDDD;
+}
+.pres-item.sub-title {
+	background-color: rgba(187,187,187,0.2);
+	border-radius: 30rpx;
+	margin-bottom: 20rpx;
+}
+.pres-item.sub-title .pres-sub-item {
+	font-weight: normal;
+}
+.pres-item .pres-sub-item {
+	width: 40%;
+	text-align: center;
+	font-weight: bold;
+}
+.pres-item .pres-sub-item:nth-child(1) {
+	width: 20%;
+	text-align: left;
+	font-weight: normal;
+}
+.pres-item .pres-sub-item.pd {
+	width: 80%;
+	padding-left: 16%;
+	text-align: left;
+	box-sizing: border-box;
+}
+.pres-item .pres-sub-item.add {
+	position: relative;
+	top: 30rpx;
+}
+.add-to-cart {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100rpx;
+	padding: 0 24rpx;
+	background-color: #ffffff;
+	border-top: 1rpx solid #dddddd;
+	box-sizing: border-box;
+	z-index: 100;
+}
+.add-to-cart .price {
+	display: flex;
+	align-items: center;
+	font-size: 26rpx;
+}
+.add-to-cart .price text {
+	color: #EF2400;
+	margin-left: 10rpx;
+}
+.add-to-cart .add-btn {
+	width: 475rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+	color: #ffffff;
+	background: linear-gradient(-90deg,rgba(254,38,0,1) 0%,rgba(239,36,0,1) 100%);
+	border-radius: 40rpx;
+}
+.add-to-cart .add-btn.disabled {
+	background: #CCCCCC;
+}

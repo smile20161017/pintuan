@@ -1,0 +1,57 @@
+<mp-navigation-bar color="#000000" background="#ffffff" title="选择验光单"></mp-navigation-bar>
+<navigator class="add-pres" url="/pages/customize-glasses/customize-glasses/customize-glasses" hover-class="none">
+	<text class="iconfont iconzengjia"></text>新增验光单
+</navigator>
+<view class="list">
+	<view class="list-item {{selectedId == item.id ? 'selected' : ''}}" wx:for="{{list}}" wx:key="id" data-item="{{item}}" bindtap="itemSelected">
+		<view class="icon">
+			<icon wx:if="{{selectedId == item.id}}" type="success" color="#EF2400" size='20'/>
+			<icon wx:else type="circle" size='20'/>
+		</view>
+		<view class="name">
+			<view class="type">{{ item.type == 'Myopia' ? '近视' : '' }}{{ item.type == 'Hyperopia' ? '远视' : '' }}{{ item.type == 'Progressive' ? '渐进' : '' }}</view>
+			<view class="pres-name">{{ item.name }}({{item.createtime}})</view>
+		</view>
+		<!-- SPH&CYL -->
+		<view class="pres-item sub-title">
+			<view class="pres-sub-item"></view>
+			<view class="pres-sub-item">球镜/度数 (SPH)</view>
+			<view class="pres-sub-item">{{item.type == 'Progressive' ? '下加光 (ADD)' : ''}}</view>
+		</view>
+		<view class="pres-item">
+			<view class="pres-sub-item">右眼 (R)</view>
+			<view class="pres-sub-item">{{ item.od_sph != '0.00' && item.od_sph > 0 ? '+' + item.od_sph : item.od_sph }}</view>
+			<view class="pres-sub-item add">{{ item.od_add != '' ? '+' + item.od_add : item.od_add }}</view>
+		</view>
+		<view class="pres-item left">
+			<view class="pres-sub-item">左眼 (L)</view>
+			<view class="pres-sub-item">{{ item.os_sph != '0.00' && item.os_sph > 0 ? '+' + item.os_sph : item.os_sph }}</view>
+			<view class="pres-sub-item"></view>
+		</view>
+		<!-- Axis&ADD -->
+		<view class="pres-item sub-title">
+			<view class="pres-sub-item"></view>
+			<view class="pres-sub-item">柱镜/散光 (CYL)</view>
+			<view class="pres-sub-item">散光轴位 (Axis)</view>
+		</view>
+		<view class="pres-item">
+			<view class="pres-sub-item">右眼 (R)</view>
+			<view class="pres-sub-item">{{ item.od_cyl != '0.00' && item.od_cyl > 0 ? '+' + item.od_cyl : item.od_cyl }}</view>
+			<view class="pres-sub-item add-item">{{item.od_axis ? item.od_axis : '无'}}</view>
+		</view>
+		<view class="pres-item left">
+			<view class="pres-sub-item">左眼 (L)</view>
+			<view class="pres-sub-item">{{ item.os_cyl != '0.00' && item.os_cyl > 0 ? '+' + item.os_cyl : item.os_cyl }}</view>
+			<view class="pres-sub-item">{{item.os_axis ? item.od_axis : '无'}}</view>
+		</view>
+		<view class="pres-item pd">
+			<view class="pres-sub-item">瞳距 (PD)</view>
+			<view class="pres-sub-item pd" wx:if="{{item.pdcheck == 'on'}}">{{item.pd_l}} (左) {{item.pd_r}} (右)</view>
+			<view class="pres-sub-item pd" wx:else>{{item.pd}}</view>
+		</view>
+	</view>
+</view>
+<view class="add-to-cart">
+	<view class="price">合计: <text>￥{{total}}</text></view>
+	<view class="add-btn {{selectedId ? '' : 'disabled'}}" bindtap="buy">{{cartFlag ? '加入购物车' : '立即购买'}}</view>
+</view>

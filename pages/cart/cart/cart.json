@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+		"mp-slideview": "/components/slideview/slideview",
+		"mp-dialog": "/components/dialog/dialog"
+    }
+}

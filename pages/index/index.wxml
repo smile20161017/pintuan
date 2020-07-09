@@ -1,0 +1,60 @@
+<mp-navigation-bar background="#ffffff" back="{{false}}">
+	<view class="left" slot="left">
+		<text class="iconfont iconsearch" bindtap="search"></text>
+	</view>
+	<view class="logo" slot="center">
+		<image src="/images/index/logo.png" mode="widthFix"></image>
+	</view>
+</mp-navigation-bar>
+<view class="index-container">
+	<view class="nav-list">
+		<navigator class="nav-item" url="/pages/classify/goods-list/goods-list?id={{item.id}}" wx:for="{{home.top_nav}}" wx:key="id" hover-class="none">
+			<image src="{{item.thumb}}" mode="widthFix"></image>
+			<text>{{item.name}}</text>
+		</navigator>
+	</view>
+	<scroll-view class="index" scroll-y="{{true}}" refresher-enabled="{{true}}" bindrefresherrefresh="refresh"refresher-triggered="{{triggered}}">
+		<view class="banner-warp">
+			<swiper indicator-dots="true" indicator-color="#fff" indicator-active-color="#FC2600" autoplay="true" interval="5000" duration="1000" circular="true">
+				<swiper-item wx:for="{{home.banner_list}}" wx:key="thumb">
+					<image src="{{item.thumb}}" class="slide-image" data-link="{{item.link}}" bindtap='go'/>
+				</swiper-item>
+			</swiper>
+		</view>
+		<block wx:for="{{home.adv_list}}" wx:key="thumb" wx:item="{{thumb}}">
+			<view class="advise" data-link="{{item.link}}" bindtap='go'>
+				<image src="{{item.thumb}}" mode="widthFix"></image>
+			</view>	
+		</block>
+		<view class="classify-warp" wx:for="{{home.recommend_list}}" wx:key="cate_name">
+			<view class="title">{{item.cate_name}}</view>
+			<navigator url="/pages/classify/goods-list/goods-list?id={{item.cate_id}}" hover-class="none">
+				<image class="classify-banner" src="{{item.cate_img}}" mode="widthFix"></image>
+			</navigator>
+			<view class="classify-list">
+				<navigator class="item" url="/pages/goods/goods-detail/goods-detail?id={{sItem.id}}" hover-class="none" wx:for="{{item.goods_list}}" wx:key="id" wx:for-item="sItem">
+					<image src="{{sItem.thumb}}" mode="widthFix"></image>
+					<view class="infor">
+						<view class="price"><text>￥</text>{{sItem.marketprice}}</view>
+						<view class="check">立即查看</view>
+					</view>
+				</navigator>
+			</view>
+		</view>
+		<view class="product-warp">
+			<view class="title">猜你喜欢</view>
+			<view class="product-container">
+				<block wx:for="{{home.like_list}}" wx:key="id">
+					<navigator class="product" url="/pages/goods/goods-detail/goods-detail?id={{item.id}}" hover-class="none">
+						<image src='{{item.thumb}}' mode="widthFix"/>
+						<text class="product-title">{{item.title}}</text>
+						<view class="product-price">
+							<text>￥{{item.marketprice}}</text>
+							<text>已买{{item.sales}}</text>
+						</view>
+					</navigator>
+				</block>
+			</view>
+		</view>
+	</scroll-view>
+</view>

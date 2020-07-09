@@ -1,0 +1,107 @@
+<mp-navigation-bar color="#000000" background="#ffffff" title="确认订单"></mp-navigation-bar>
+<view class="address-infor" bindtap="changeAddress">
+	<text class="iconfont icondaohangdizhi"></text>
+	<view wx:if="{{address}}">
+		<view>
+			<text class="name">{{address.realname}}</text>
+			<text class="tel">{{address.mobile}}</text>
+		</view>
+		<view class="address">{{address.address}}</view>
+	</view>
+	<view wx:else>请选择收货地址</view>
+	<text class="iconfont iconxiangyou"></text>
+</view>
+<view class="detail">
+	<view class="list-item" wx:for="{{list}}" wx:key="id">
+		<view class="product">
+			<view class="product-img">
+				<image src="{{item.thumb}}" mode="widthFix"></image>
+			</view>
+			<view class="product-des">
+				<view class="product-name">{{item.title}}</view>
+			</view>
+			<view class="product-price">
+				<view>￥{{item.price}}</view>
+				<view>x{{item.total}}</view>
+			</view>
+		</view>
+		<view class="pres">
+			<view class="product-img lens-img">
+				<image src="{{item.spec_img}}" mode="widthFix"></image>
+			</view>
+			<view class="product-des">{{item.spec_title}}</view>
+			<view class="product-price"></view>
+		</view>
+		<view class="item">
+			<view class="item-left">验光单类型</view>
+			<view class="item-right">{{item.lens_type == '' ? '无处方' : ''}}{{item.lens_type == 'Myopia' ? '近视' : ''}}{{item.lens_type == 'Hyperopia' ? '远视' : ''}}{{item.lens_type == 'Progressive' ? '渐进' : ''}}</view>
+		</view>
+	</view>
+	
+	<view class="item">
+		<view class="item-left">配送方式</view>
+		<view class="item-right choose-infor">
+			<text class="way">普通配送</text>
+			<text>{{postage ? '￥' + postage : '快递免邮'}}</text>
+		</view>
+	</view>
+	<view class="item" wx:if="{{couponList.length}}">
+		<view class="item-left">选择优惠</view>
+		<view class="item-right choose-infor" bindtap="useCoupon">
+			<text class="choose-coupon selected" wx:if="{{coupon.id == 0}}">不使用优惠券</text>
+			<text class="choose-coupon {{coupon.id ? 'selected' : ''}}" wx:else>请选择优惠券</text>
+			<view class="coupon-num">
+				<text class="choose-coupon" wx:if="{{coupon.id}}">-￥{{coupon.cost}}</text>
+				<text class="iconfont iconxiangyou"></text>
+			</view>
+		</view>
+	</view>
+	<view class="item">
+		<view class="item-left">订单备注</view>
+		<view class="item-right choose-infor">
+			<input type="text" placeholder="选填，请先和客服协商一致" bindinput="inputChange"/>
+		</view>
+	</view>
+	<view class="total">
+		<text class="num">共{{totalNum}}件</text>小计: <text class="total-price">￥{{totalPrice}}</text>
+	</view>
+</view>
+<view class="btn-list">
+	<view class="btn-total">合计: <text>￥</text><text>{{grandTotal}}</text></view>
+	<view class="settle" bindtap="settle">结算({{totalNum}})</view>
+</view>
+
+<pull-up-sheet show="{{couponSheet}}" title="可用优惠券">
+	<view class="coupon-wrap" slot="container">
+		<view class="content-item" wx:for="{{couponList}}" wx:key="id">
+			<image src="/images/index/coupon_bg.png" />
+			<view class="coupon-infor">
+				<view class="price">
+					<text>￥</text>
+					<text>{{item.cost}}</text>
+				</view>
+				<view class="msg">
+					<text>满{{item.enough}}使用</text>
+					<text>{{item.date}}</text>
+				</view>
+			</view>
+			<view class="select" data-item="{{item}}" bindtap="couponSelected">
+				<icon type="success" color="#EF2400" size='20' wx:if="{{coupon.id == item.id}}"/>
+				<text class="circle" size='20' wx:else></text>
+			</view>
+		</view>
+		<view class="content-item">
+			<image src="/images/index/coupon_bg.png" />
+			<view class="coupon-infor">
+				<view class="price cancel">不使用优惠券</view>
+			</view>
+			<view class="select" data-item="{{0}}" bindtap="couponSelected">
+				<icon type="success" color="#EF2400" size='20' wx:if="{{coupon.id == 0}}"/>
+				<text class="circle" size='20' wx:else></text>
+			</view>
+		</view>
+	</view>
+</pull-up-sheet>
+
+
+

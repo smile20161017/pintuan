@@ -1,0 +1,101 @@
+<mp-navigation-bar color="#000000" background="#ffffff" title="订单详情"></mp-navigation-bar>
+<view class="container">
+	<view class="state">
+		<text>{{orderInfo.status_text}}</text>
+		<text class="{{orderStateIcon[orderInfo.status_text]}}"></text>
+	</view>
+	<view class="express" wx:if="{{orderInfo.show_express}}" bindtap="onExpressClick">
+		<text class="iconfont iconpeisong2"></text>
+		<view>
+			<view class="express-text">{{orderInfo.express.step}}</view>
+			<view class="express-time">{{orderInfo.express.time}}</view>
+		</view>
+		<text class="iconfont iconxiangyou"></text>
+	</view>
+	<view class="address">
+		<text class="iconfont icondaohangdizhi"></text>
+		<view>
+			<view>
+				<text class="address-name">{{orderInfo.address_info.realname}}</text>
+				<text class="address-tel">{{orderInfo.address_info.mobile}}</text>
+			</view>
+			<view class="address-text">{{orderInfo.address_info.address}}</view>
+		</view>
+	</view>
+	<view class="box" wx:for="{{orderInfo.goods}}" wx:key="index">
+		<view class="goods">
+			<view class="product" data-id="{{item.id}}" bindtap="onProdClick">
+				<view class="product-img">
+					<image src="{{item.thumb}}" mode="widthFix"></image>
+				</view>
+				<view class="product-des">
+					<view class="product-name">{{item.title}}</view>
+				</view>
+				<view class="product-price">
+					<view>￥{{item.unitprice}}</view>
+					<view>x{{item.total}}</view>
+				</view>
+			</view>
+			<view class="pres">
+				<view class="product-img lens-img">
+					<image src="{{item.spec_img}}" mode="widthFix"></image>
+				</view>
+				<view class="product-des">{{item.spec_title}}</view>
+				<view class="product-price"></view>
+			</view>
+		</view>
+		<view class="lens">
+			<view class="lens-left">验光单类型</view>
+			<view class="lens-right" wx:if="{{item.lens_info.type}}" data-index="{{index}}" bindtap="onPrescriptionClick">
+				<view class="lens-right-type">{{lensTypeList[item.lens_info.type]}}</view>
+				<text class="lens-right-name">{{item.lens_info.name}}({{item.lens_info.createtime}})</text>
+				<text class="iconfont iconxiangyou"></text>
+			</view>
+			<view class="lens-right lens-right-name" wx:else>无处方</view>
+		</view>
+	</view>
+	<view class="remark">
+		<view class="remark-left">订单备注</view>
+		<view class="remark-right">{{orderInfo.remark || '--'}}</view>
+	</view>
+	<view class="total">
+		<view>
+			<text>商品总价</text>
+			<text>￥{{orderInfo.grprice}}</text>
+		</view>
+		<view>
+			<text>运费(快递)</text>
+			<text>￥{{orderInfo.dispatchprice}}</text>
+		</view>
+		<view>
+			<text>优惠</text>
+			<text>-￥{{orderInfo.couponprice}}</text>
+		</view>
+		<view>
+			<text>实付款</text>
+			<text class="total-red">￥{{orderInfo.price}}</text>
+		</view>
+	</view>
+	<view class="info">
+		<view class="info-title">订单信息</view>
+		<view class="info-wrap">
+			<view>
+				<text>订单编号</text>
+				<text>{{orderInfo.ordersn}}</text>
+				<text class="info-btn" bindtap="onCopyOrderSN">复制</text>
+			</view>
+			<view>
+				<text>创建时间</text>
+				<text>{{orderInfo.createtime}}</text>
+			</view>
+			<view wx:if="{{orderInfo.paytime !== '--'}}">
+				<text>付款时间</text>
+				<text>{{orderInfo.paytime}}</text>
+			</view>
+			<view wx:if="{{orderInfo.sendtime !== '--'}}">
+				<text>发货时间</text>
+				<text>{{orderInfo.sendtime}}</text>
+			</view>
+		</view>
+	</view>
+</view>

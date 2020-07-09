@@ -1,0 +1,74 @@
+<mp-navigation-bar color="#000000" background="#ffffff" title="商品列表" back="{{backFlag}}">
+	<view class="left" slot="left" wx:if="{{!backFlag}}">
+		<view class="home" bindtap="goHome">
+			<text class="iconfont iconshouye1"></text>
+		</view>
+	</view>
+</mp-navigation-bar>
+<scroll-view class="main" scroll-y="{{true}}" bindscrolltolower="loadMore">
+	<!-- 排序 -->
+	<view class="sort">
+		<view class="sort-option {{order == 'displayorder' ? 'on' : ''}}" data-type="displayorder" bindtap="sort">
+			<text class="sort-name">综合</text>
+		</view>
+		<view class="sort-option {{order == 'sales' ? 'on' : ''}}" data-type="sales" bindtap="sort">
+			<text class="sort-name">销量</text>
+		</view>
+		<view class="sort-option {{order == 'marketprice' ? 'on' : ''}} {{by == 'desc' ? 'desc' : 'asc'}}" data-type="marketprice" bindtap="sort">
+			<text>价格</text>
+			<view class="price-icon">
+				<text class="iconfont iconiconfontjiantou up"></text>
+				<text class="iconfont iconiconfontjiantou down"></text>
+			</view>
+		</view>
+		<view class="sort-option" bindtap="openFilter">
+			<text>筛选</text>
+			<text class="iconfont iconshaixuan"></text>
+		</view>
+	</view>
+	<!-- 列表 -->
+	<view class="product-container">
+		<block wx:for="{{list}}" wx:key="id">
+			<navigator class="product" url="/pages/goods/goods-detail/goods-detail?id={{item.id}}" hover-class="none">
+				<image src="{{item.thumb}}" mode="widthFix"/>
+				<text class="product-title">{{item.title}}</text>
+				<view class="product-price">
+					<text>￥{{item.marketprice}}</text>
+					<text>月销{{item.sales}}</text>
+				</view>
+			</navigator>
+		</block>
+	</view>
+	<!-- 上拉加载 -->
+	<view class="no-more" wx:if="{{noMore}}">
+		<text>没有更多内容了</text>
+	</view>
+	<mp-loading ext-class="loading-wrap" type="dot-gray" show="{{true}}" wx:else></mp-loading>
+	<!-- 筛选框 -->
+	<view class="filter {{filterShow ? 'filter-show' : ''}}">
+		<scroll-view class="filter-container" scroll-y="{{true}}">
+			<view class="filter-item" wx:for="{{filter}}" wx:key="type">
+				<view class="item-name {{item.toggle ? '' : 'close'}}" data-index="{{index}}" bindtap="filterToggle">
+					<text>{{item.name}}</text>
+					<text class="iconfont iconiconfontjiantou"></text>
+				</view>
+				<view hidden="{{!item.toggle}}">
+					<checkbox-group class="item-options" data-index="{{index}}" bindchange="optionChange">
+						<view wx:for="{{item.children}}" wx:key="id" wx:for-item="sItem" wx:for-index="sIndex">
+							<label class="checkbox {{sItem.checked ? 'on' : ''}}" for="{{sItem.id}}">
+								{{sItem.name}}
+								<text class="iconfont iconxuanzejiaobiao"></text>
+							</label>
+							<checkbox id="{{sItem.id}}" value="{{sItem.id}}" checked="{{sItem.checked}}"/>
+						</view>
+					</checkbox-group>
+				</view>
+			</view>
+		</scroll-view>
+		<view class="btn-list">
+			<view class="reset" bindtap="resetOptions">重置</view>
+			<view class="confirm" bindtap="confirmOptions">确定</view>
+		</view>
+	</view>
+	<view class="sheet-mask {{filterShow ? '' : 'sheet-mask-hidden'}}" bindtap="closeFilter" catchtouchmove="preventM"></view>
+</scroll-view>

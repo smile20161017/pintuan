@@ -1,0 +1,27 @@
+<mp-navigation-bar color="#000000" background="#fff" title="商品评价"></mp-navigation-bar>
+<view class="goods-item" wx:for="{{orderInfo}}" wx:key="index">
+	<view class="infor">
+		<view class="infor-img">
+			<image src="{{item.thumb}}" mode="widthFix"></image>
+		</view>
+		<view class="infor-name">{{item.title}}</view>
+	</view>
+	<view class="write">
+		<textarea placeholder="把你的评价分享给想买的他们吧" maxlength="200" data-index="{{index}}" bindinput="onReviewsInput"/>
+	</view>
+	<view class="add-Img">
+		<block wx:for="{{item.files}}" wx:for-item="imgItem" wx:for-index="imgIndex" wx:key="*this">
+			<view class="img-container">
+				<view>
+					<image src="{{imgItem}}" mode="widthFix"></image>
+				</view>
+				<text class="iconfont iconguanbi" data-goods-index="{{index}}" data-img-index="{{imgIndex}}" bindtap="onDelImg"></text>
+			</view>
+		</block>
+		<view class="add" data-goods-index="{{index}}" bindtap="onAddImg">
+			<text class="iconfont iconxiangji"></text>
+			<text>{{orderInfo[index].files.length}}/{{reviewsImgLenMax}}</text>
+		</view>
+	</view>
+</view>
+<view class="submit" bindtap="onSubmit">提交评价</view>
